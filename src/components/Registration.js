@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import swal from 'sweetalert';
 export default function Registration() 
+
 {
     function registerform(e){
         e.preventDefault();
@@ -78,8 +79,10 @@ export default function Registration()
                 </div>
                 <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
   
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  <img src={require('../Images/signupimg.jpg')}
                     className="img-fluid" alt="Sample image"/>
+                  {/* <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    className="img-fluid" alt="Sample image"/> */}
   
                 </div>
               </div>

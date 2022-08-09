@@ -10,10 +10,12 @@ import 'bootstrap/dist/js/bootstrap';
 import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
+import Navbar from './components/Navbar';
 function App() {
   return (
     <div>
       <Router>
+      <Navbar/>
       <Routes>
         
       <Route path='/' element={<Home/>}/>
