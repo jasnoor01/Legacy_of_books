@@ -10,10 +10,18 @@ import 'bootstrap/dist/js/bootstrap';
 import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
+<<<<<<< HEAD
+=======
+import Navbar from './components/Navbar';
+>>>>>>> 996f67549fec9814efc57401754bca16f1f6504e
 function App() {
   return (
     <div>
       <Router>
+<<<<<<< HEAD
+=======
+      <Navbar/>
+>>>>>>> 996f67549fec9814efc57401754bca16f1f6504e
       <Routes>
         
       <Route path='/' element={<Home/>}/>
@@ -27,4 +35,8 @@ function App() {
   );
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> 996f67549fec9814efc57401754bca16f1f6504e
