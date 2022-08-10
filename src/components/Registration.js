@@ -1,8 +1,10 @@
 
+import axios from 'axios';
 import React from 'react'
 import swal from 'sweetalert';
 export default function Registration() 
 {
+  var url = "http://localhost:1000/";
     function registerform(e){
         e.preventDefault();
         var data= new FormData(e.currentTarget)
@@ -14,11 +16,12 @@ export default function Registration()
         } 
         
         if(obj.Password===obj.Rpassword){
-            console.log(obj);
+            axios.post(url+'Registration', obj).then((succ) => {
+                  e.target.name.focus();
+                  e.target.reset()
+                  swal("Registration Successful!","", "success");
+          })
 
-            
-            e.target.reset()
-            swal("Registration Successful!","", "success");
         }else{
             swal("Please make sure your passwords match","", "error");
         }
@@ -42,7 +45,7 @@ export default function Registration()
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
                         <input type="text" id="form3Example1c" className="form-control" placeholder='Name' name="name" required />
-                        {/* <label className="form-label" for="form3Example1c">Your Name</label> */}
+                   
                       </div>
                     </div>
   
@@ -50,7 +53,7 @@ export default function Registration()
                       <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
                         <input type="email" id="form3Example3c" className="form-control" placeholder='Email' name="email" required/>
-                        {/* <label className="form-label" for="form3Example3c">Your Email</label> */}
+                      
                       </div>
                     </div>
   
@@ -58,7 +61,7 @@ export default function Registration()
                       <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
                         <input type="password" id="form3Example4c" className="form-control" placeholder='Password' name="password" required/>
-                        {/* <label className="form-label" for="form3Example4c">Password</label> */}
+                        
                       </div>
                     </div>
   
@@ -66,7 +69,7 @@ export default function Registration()
                       <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
                         <input type="password" id="form3Example4cd" className="form-control" placeholder='Repeat password' name="rpassword" required/>
-                        {/* <label className="form-label" for="form3Example4cd">Repeat your password</label> */}
+                        
                       </div>
                     </div>
   
@@ -79,7 +82,7 @@ export default function Registration()
                 </div>
                 <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
   
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  <img src={require('../Images/signupimg.jpg')}
                     className="img-fluid" alt="Sample image"/>
   
                 </div>
