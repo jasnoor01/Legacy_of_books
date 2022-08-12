@@ -15,14 +15,14 @@ export default function Navbar() {
         <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="Contact">Features</Link>
+        <Link className="nav-link" to="/Contact">Contact us</Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/About">Pricing</Link>
+        <Link className="nav-link" to="/About">About us</Link>
       </li>
       
     </ul>
-  <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+  <ul className='navbar-nav me-auto ml-auto'>
           <li className="nav-item" ><Link className="nav-link" to='/login'>Sign in</Link></li>
           <li className="nav-item" ><Link className="nav-link" to='/Registration'>Sign up</Link></li>
          </ul>
