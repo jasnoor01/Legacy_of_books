@@ -29,6 +29,8 @@ app.post('/Registration',(req,res)=>{
 app.post('/getlogin',(req,res)=>{
     registrations.findOne(req.body).then((succ)=>{
         res.send(succ)
+        // console.log(req.body)
+        // console.log(succ)
     })
 })
 

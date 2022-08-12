@@ -23,8 +23,8 @@ export default function Navbar() {
       
     </ul>
   <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-          <li className="nav-item" ><Link className="nav-link" to='/login'>Log in</Link></li>
-          <li className="nav-item" ><Link className="nav-link" to='/Registration'>Register</Link></li>
+          <li className="nav-item" ><Link className="nav-link" to='/login'>Sign in</Link></li>
+          <li className="nav-item" ><Link className="nav-link" to='/Registration'>Sign up</Link></li>
          </ul>
   </div>
 </nav>

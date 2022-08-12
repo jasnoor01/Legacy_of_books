@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 export default function Registration() 
 {
@@ -76,7 +77,8 @@ export default function Registration()
                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" className="btn btn-primary btn-lg">Register</button>
                     </div>
-  
+                    
+                    <div className="d-flex flex-row align-items-center mb-4">Already a user?<Link to="/login">Sign in?</Link></div>
                   </form>
   
                 </div>

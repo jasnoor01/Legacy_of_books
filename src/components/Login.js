@@ -3,6 +3,8 @@
 import React from 'react'
 import axios from 'axios';
 import Navbar from './Navbar'
+import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 export default function Login() {
   var url="http://localhost:1000/";
   function login(e){
@@ -14,8 +16,14 @@ export default function Login() {
         } 
         axios.post(url+'getlogin', obj).then((succ) => {
          
-          e.target.reset()
-          console.log('ok')
+          if(succ.data===""){
+            swal("Invalid Email or Password!","", "error");
+            console.log("NOT OK")
+          }else{
+            e.target.reset()
+            console.log("OK")
+          }
+          
           
   })
   }
@@ -53,7 +61,8 @@ export default function Login() {
   
                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" className="btn btn-primary btn-lg">Sign in</button>
-                    </div>
+                    </div >
+                      <div className="d-flex flex-row align-items-center mb-4">Not a user?<Link to="/Registration">Sign up?</Link></div>
   
                   </form>
   
@@ -65,6 +74,7 @@ export default function Login() {
   
                 </div>
               </div>
+             
             </div>
           </div>
         </div>
