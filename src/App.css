@@ -2,3 +2,22 @@
   border:0 !important;
   border-bottom: 1px solid #ccc !important;
 }
+.parentcat {
+  height: 100vh;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.childcat {
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
+  flex-direction: column;
+}

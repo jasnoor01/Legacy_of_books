@@ -11,6 +11,9 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 
 import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import AdminCategory from './components/AdminCategory';
+import AdminSubCategory from './components/AdminSubCategory';
 function App() {
   return (
     <div>
@@ -23,6 +26,9 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/Login' element={<Login/>}/>
       <Route path='/Registration' element={<Registration/>}/>
+      <Route path='/Dashboard' element={<Dashboard/>}/>
+      <Route path='/admincat' element={<AdminCategory/>}/>
+      <Route path='/adminsubcat' element={<AdminSubCategory/>}/>
       
       </Routes>
       </Router>

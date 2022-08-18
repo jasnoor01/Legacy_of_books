@@ -78,7 +78,7 @@ export default function Registration()
                       <button type="submit" className="btn btn-primary btn-lg">Register</button>
                     </div>
                     
-                    <div className="d-flex flex-row align-items-center mb-4">Already a user?<Link to="/login">Sign in?</Link></div>
+                    <div className="d-flex flex-row align-items-center mb-4">Already a user? <Link to="/login">Sign in?</Link></div>
                   </form>
   
                 </div>
