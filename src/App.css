@@ -21,3 +21,31 @@
   background-color: antiquewhite;
   flex-direction: column;
 }
+.leftlist{
+  min-height: 100vh;
+  background: lightgrey;
+}
+.list2{
+  background: transparent;
+}
+.list2 .list-group-item{
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid dimgrey;
+  color:dimgray;
+  font-weight: bold;
+}
+.close{
+  padding: 10px !important;
+  display: none;
+}
+.m-0{
+  margin: 0px;
+  overflow-y: hidden;
+}
+@media only screen and (max-width:768px){
+  .close{
+    display: block;
+  }
+}
+

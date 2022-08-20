@@ -9,9 +9,8 @@ const cors = require('cors')
 app.use(bodyParser.json())
 app.use(cors())
 
-var registrations;
-var category
-var subcategory
+var registrations, category, subcategory, adminlogin;
+
 const connectionString = 'mongodb+srv://admin:admin@cluster0.0lqgicb.mongodb.net/?retryWrites=true&w=majority'
 MongoClient.connect(connectionString, function (err, succ) {
     if (err) throw err;
@@ -20,6 +19,7 @@ MongoClient.connect(connectionString, function (err, succ) {
     registrations = db.collection('registrations')
     category = db.collection('Categories')
     subcategory = db.collection('Sub Categories')
+    adminlogin = db.collection('adminlogin')
     // var              connection name
 
 })
@@ -31,11 +31,37 @@ app.post('/Registration', (req, res) => {
 })
 
 app.post('/getlogin', (req, res) => {
-    registrations.findOne(req.body).then((succ) => {
-        res.send(succ)
-        // console.log(req.body)
-        // console.log(succ)
-    })
+
+    if (req.body.Type == 'Admin') {
+
+        adminlogin.findOne({
+            username: req.body.Email,
+            password: req.body.Password
+        }).then((succ) => {
+            // console.log(succ);
+            // res.send(succ);
+            // console.log('ok');
+            if (succ == null) {
+                res.send('no');
+            } else {
+                res.send(succ);
+            }
+        }).catch((err) => {
+            // console.log(err);
+            // console.log('not ok');
+            res.send('err')
+        })
+
+    } else {
+
+    }
+
+
+    // registrations.findOne(req.body).then((succ) => {
+    //     res.send(succ)
+    //     // console.log(req.body)
+    //     // console.log(succ)
+    // })
 })
 // Add delete get category
 app.post('/addcat', (req, res) => {
@@ -55,19 +81,19 @@ app.post('/delcat', (req, res) => {
         _id: idd
     }).then((succ) => {
         subcategory.find({
-            Category:succ.Category
-        }).toArray().then(()=>{
+            Category: succ.Category
+        }).toArray().then(() => {
             subcategory.deleteMany({
-                Category:succ.Category
+                Category: succ.Category
             }
             ).then(() => {
-                    category.deleteOne({
-                            _id: idd
-                        }).then(() => {
-                            // console.log(s)
-                            res.send('Deleted');
-                        })
+                category.deleteOne({
+                    _id: idd
+                }).then(() => {
+                    // console.log(s)
+                    res.send('Deleted');
                 })
+            })
         })
     })
 })

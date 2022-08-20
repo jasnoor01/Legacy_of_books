@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/src/jquery';
@@ -19,21 +19,21 @@ function App() {
     <div>
       <Router>
 
-      <Navbar/>
+        {/* <Navbar/> */}
 
-      <Routes>
-        
-      <Route path='/' element={<Home/>}/>
-      <Route path='/Login' element={<Login/>}/>
-      <Route path='/Registration' element={<Registration/>}/>
-      <Route path='/Dashboard' element={<Dashboard/>}/>
-      <Route path='/admincat' element={<AdminCategory/>}/>
-      <Route path='/adminsubcat' element={<AdminSubCategory/>}/>
-      
-      </Routes>
+        <Routes>
+
+          <Route path='/' element={<Home />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Registration' element={<Registration />} />
+          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/admincat' element={<AdminCategory />} />
+          <Route path='/adminsubcat' element={<AdminSubCategory />} />
+
+        </Routes>
       </Router>
     </div>
-    
+
   );
 }
 
