@@ -14,6 +14,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import AdminCategory from './components/AdminCategory';
 import AdminSubCategory from './components/AdminSubCategory';
+import AddProduct from './components/AddProduct';
 function App() {
   return (
     <div>
@@ -29,6 +30,7 @@ function App() {
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/admincat' element={<AdminCategory />} />
           <Route path='/adminsubcat' element={<AdminSubCategory />} />
+          <Route path='/addproduct' element={<AddProduct/>} />
 
         </Routes>
       </Router>

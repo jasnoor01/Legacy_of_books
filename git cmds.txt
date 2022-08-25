@@ -1,0 +1,10 @@
+1. when making project
+git pull -u origin master
+
+
+2.after making changes
+
+git add .
+git commit -m "Message"
+git push -u origin master
+

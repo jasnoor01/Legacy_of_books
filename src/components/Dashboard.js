@@ -18,32 +18,32 @@ export default function Dashboard() {
     chk();
   }, [])
 
-  console.log(view);
+  // console.log(view);
 
   return (
     <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0 m-0'>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark m-0">
+      <nav className="navbar navbar-expand-md bg-dark navbar-dark m-0">
 
-        <button class="navbar-toggler" type="button" onClick={() => setview(false)}>
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" onClick={() => setview(false)}>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a className="navbar-brand" href="#">Navbar</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+        <div className="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
             </li>
           </ul>
         </div>

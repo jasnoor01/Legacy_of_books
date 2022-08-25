@@ -90,7 +90,6 @@ export default function Login() {
                           <input type={'radio'} id="admin" name="type" value={'Admin'} checked />
                         </div>
                       </div>
-
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button type="submit" className="btn btn-primary btn-lg">Sign in</button>
                       </div >
