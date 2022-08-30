@@ -110,7 +110,7 @@ app.post('/updateUser', (req, res) => {
         Pincode:req.body.Pincode,
         State:req.body.State,
         Urn:req.body.Urn,
-        Batch:req.body.Batch
+        Batch:req.body.Batch,
     }
     }).then((succ)=>{
         res.send("succ")
