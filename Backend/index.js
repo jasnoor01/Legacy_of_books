@@ -5,11 +5,14 @@ const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
+// var LocalStorage = require('node-localstorage').LocalStorage,
+// localStorage = new LocalStorage('./scratch');
 
 app.use(bodyParser.json())
 app.use(cors())
 
-var registrations, category, subcategory, adminlogin;
+// var a = localStorage.getItem('UserLog');
+var registrations, category, subcategory, adminlogin, department;
 
 const connectionString = 'mongodb+srv://admin:admin@cluster0.0lqgicb.mongodb.net/?retryWrites=true&w=majority'
 MongoClient.connect(connectionString, function (err, succ) {
@@ -20,6 +23,8 @@ MongoClient.connect(connectionString, function (err, succ) {
     category = db.collection('Categories')
     subcategory = db.collection('Sub Categories')
     adminlogin = db.collection('adminlogin')
+    department = db.collection('Add_Department')
+
     // var              connection name
 
 })
@@ -29,6 +34,14 @@ app.post('/Registration', (req, res) => {
         res.send(succ)
     })
 })
+app.get('/RegUsers', (req, res) => {
+    registrations.find().toArray().then((succ) => {
+        res.send(succ)
+    })
+})
+
+
+
 
 app.post('/getlogin', (req, res) => {
 
@@ -53,6 +66,14 @@ app.post('/getlogin', (req, res) => {
         })
 
     } else {
+        registrations.findOne({
+            Email: req.body.Email,
+            Password: req.body.Password
+        }).then((succ) => {
+            res.send(succ)
+            // console.log(req.body)
+            // console.log(succ)
+        })
 
     }
 
@@ -63,6 +84,42 @@ app.post('/getlogin', (req, res) => {
     //     // console.log(succ)
     // })
 })
+// Update user updateUser
+app.get('/getoneUser', (req, res) => {
+    
+    var idd = new mongodb.ObjectId(req.query.id);
+    // console.log(idd)
+    registrations.findOne({
+        _id:idd
+    }).then((succ) => {
+        res.send(succ);
+        // console.log(succ)
+        // console.log(req.body);
+    })
+    
+    
+})
+
+app.post('/updateUser', (req, res) => {
+    var idd = new mongodb.ObjectId(req.query.id);
+    registrations.updateOne({_id:idd},{
+        $set:{
+        Name:req.body.Name,
+        Dob:req.body.Dob,
+        Address:req.body.Address,
+        Pincode:req.body.Pincode,
+        State:req.body.State,
+        Urn:req.body.Urn,
+        Batch:req.body.Batch
+    }
+    }).then((succ)=>{
+        res.send("succ")
+    })
+
+})
+
+
+
 // Add delete get category
 app.post('/addcat', (req, res) => {
     category.insertOne(req.body).then((succ) => {
@@ -114,6 +171,28 @@ app.post('/delsubcat', (req, res) => {
     // console.log(req.body.id);
     var idd = new mongodb.ObjectId(req.body.id);
     subcategory.deleteOne({
+        _id: idd
+    }).then((succ) => {
+        res.send('Deleted');
+    })
+})
+// Add department
+app.post('/adddep', (req, res) => {
+    department.insertOne(req.body).then((succ) => {
+        res.send(succ)
+    })
+})
+
+app.get('/getdep', (req, res) => {
+    department.find().toArray().then((succ) => {
+        res.send(succ);
+        // console.log(succ)
+    })
+})
+app.post('/deldep', (req, res) => {
+    // console.log(req.body.id);
+    var idd = new mongodb.ObjectId(req.body.id);
+    department.deleteOne({
         _id: idd
     }).then((succ) => {
         res.send('Deleted');
