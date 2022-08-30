@@ -22,16 +22,28 @@ export default function Login() {
     }
     axios.post(url + 'getlogin', obj).then((succ) => {
 
-      if (succ.data == 'err') {
-        alert('Something went wrong, please contact admin');
-      } else if (succ.data == 'no') {
-        alert('Sorry, Wrong ID or Password, Please check again');
+      if (succ.data === 'err') {
+        swal("Error Occured","Please contact the authorities","error")
+      } else if (succ.data === 'no') {
+        swal("Please enter correct credentials","","error")
       } else {
         // console.log(succ.data._id);
-        if (data.get("type") == 'Admin') {
+        if (data.get("type") === 'Admin') {
           localStorage.setItem('AdminLog', succ.data._id);
-          navi('/Dashboard');
+          navi('/adminhome');
         } else {
+          
+
+          if (succ.data === "") {
+            swal("Invalid Email or Password!", "", "error");
+            console.log("NOT OK")
+          } else {
+            e.target.reset()
+            localStorage.setItem('UserLog', succ.data._id);
+          navi('/updateProfile')
+          }
+
+
 
         }
 
@@ -49,8 +61,12 @@ export default function Login() {
 
     })
   }
+  // console.log(localStorage.getItem('UserLog'));
+  // console.log("aa");
   return (
-    <div><section className="vh-100" style={{ backgroundColor: '#eee' }}>
+    <div>
+      <Navbar/>
+      <section className="vh-100" style={{ backgroundColor: '#eee' }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
@@ -87,7 +103,7 @@ export default function Login() {
                           <input type={'radio'} id="user" name="type" value={'User'} />
                           &nbsp;&nbsp;&nbsp;
                           <label htmlFor='admin'>Admin</label>&nbsp;
-                          <input type={'radio'} id="admin" name="type" value={'Admin'} checked />
+                          <input type={'radio'} id="admin" name="type" value={'Admin'} defaultChecked />
                         </div>
                       </div>
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import Navbar from './Navbar';
 export default function Registration() 
 {
   var url = "http://localhost:1000/";
@@ -12,8 +13,12 @@ export default function Registration()
         var obj={
             Name:data.get("name"),
             Email:data.get("email"),
-            Password:data.get("password"),
-            Rpassword:data.get("rpassword"),
+            Dob:'',
+            Address:'',
+            State:'',
+            Pincode:'',
+            Urn:'',
+            Password:data.get("password")
         } 
         
         if(obj.Password===obj.Rpassword){
@@ -29,7 +34,9 @@ export default function Registration()
 
     }
   return (
-    <div><section className="vh-100" style={{backgroundColor: '#eee'}}>
+    <div>
+      <Navbar/>
+      <section className="vh-100" style={{backgroundColor: '#eee'}}>
     <div className="container h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-lg-12 col-xl-11">

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import AdminSideNav from "./AdminSideNav";
+import AddProduct from './AddProduct';
 import AdminNavbar from './AdminNavbar';
+import AdminSubCategory from './AdminSubCategory';
+import ReactDOM from "react-dom";
 
 export default function Dashboard() {
 
@@ -21,12 +27,14 @@ export default function Dashboard() {
   // console.log(view);
 
   return (
+
+    
     <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0 m-0'>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark m-0">
 
-        <button className="navbar-toggler" type="button" onClick={() => setview(false)}>
+        {/* <button className="navbar-toggler" type="button" onClick={() => setview(false)}>
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
 
         <a className="navbar-brand" href="#">Navbar</a>
 
@@ -49,18 +57,18 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <div className='row'>
+      {/* <div className='row p-0 m-0'>
         <AdminNavbar />
 
         <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10 p-0">
+          <Routes>
 
-          <h1>DASHBOARD</h1>
-
-
-
+        <Route path='/AddProduct' element={<AddProduct />} />
+          </Routes>
+         
 
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -1,8 +1,19 @@
 
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 export default function Navbar() {
+
+  const [logcheck,setlogcheck]=useState(localStorage.getItem('UserLog'))
+  
+
+function Logout() {
+  setlogcheck(null) 
+  localStorage.removeItem('UserLog')
+  console.log(localStorage.getItem('UserLog')+'abc')
+   
+}
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">Navbar</a>
@@ -23,7 +34,21 @@ export default function Navbar() {
       
     </ul>
   <ul className='navbar-nav me-auto ml-auto'>
-          <li className="nav-item" ><Link className="nav-link" to='/login'>Sign in</Link></li>
+
+
+
+          <li className="nav-item" >
+            {/* <Link className="nav-link" to='/login'> */}
+            
+            {(logcheck==null?(<Link className="nav-link" to="/login">Sign in</Link>):(<button className=" btn nav-link" onClick={Logout}>Sign out</button>))}
+            
+            
+            {/* </Link> */}
+            
+            
+            
+            
+            </li>
           <li className="nav-item" ><Link className="nav-link" to='/Registration'>Sign up</Link></li>
          </ul>
   </div>
