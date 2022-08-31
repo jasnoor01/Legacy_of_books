@@ -111,6 +111,7 @@ app.post('/updateUser', (req, res) => {
         State:req.body.State,
         Urn:req.body.Urn,
         Batch:req.body.Batch,
+        Department:req.body.Department
     }
     }).then((succ)=>{
         res.send("succ")

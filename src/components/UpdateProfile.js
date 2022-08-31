@@ -17,6 +17,7 @@ export default function UpdateProfile() {
     }
     useEffect(() => {
       getdata();
+      getdata1();
     }, []);
     // console.log(data)
     function update(e) {
@@ -29,7 +30,8 @@ export default function UpdateProfile() {
             Pincode:data.get("pin"),
             State:data.get("state"),
             Urn:data.get('Urn'),
-            Batch:data.get('batch'),
+            Batch:data.get('Batch'),
+            Department:data.get('department')
         }
         // console.log(obj)
         axios.post(url + "updateUser?id="+localStorage.getItem('UserLog'),obj).then((succ) => {
@@ -39,7 +41,12 @@ export default function UpdateProfile() {
           });
     }
 
-
+    const [dep, setdep] = useState([]);
+    function getdata1() {
+        axios.get(url + "getdep").then((succ) => {
+            setdep(succ.data);
+        });
+    }
   return (
     <div>
         <Navbar/>
@@ -63,8 +70,13 @@ export default function UpdateProfile() {
                         <div className="col-md-6 my-2"><label className="labels">Batch</label><input type="month" className="form-control" name="batch" defaultValue={data.batch} required/></div>
                     </div>
                     <div className="row mt-2 my-2">
-                        <div className="col-md-12 my-2"><label className="labels">Branch</label>
-                        <input type="number" className="form-control" name="branch" placeholder="First name" />
+                        <div className="col-md-12 my-2"><label className="labels">Department</label>
+                        <select className="form-select py-3 col-lg-12" name="department" aria-label="Default select example">
+                                        <option defaultValue>Select Department</option>
+                                        {dep.map((row) => (
+                                            <option key={row._id} value={row.Department}>{row.Department}</option>
+                                        ))}
+                                    </select>
                         </div>
                        
                     </div>
