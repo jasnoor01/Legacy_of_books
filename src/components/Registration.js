@@ -18,7 +18,9 @@ export default function Registration()
             State:'',
             Pincode:'',
             Urn:'',
-            Password:data.get("password")
+            Status:'Pending',
+            Password:data.get("password"),
+            Rpassword:data.get("rpassword"),
         } 
         
         if(obj.Password===obj.Rpassword){

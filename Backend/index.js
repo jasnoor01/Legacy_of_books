@@ -99,7 +99,6 @@ app.get('/getoneUser', (req, res) => {
     
     
 })
-
 app.post('/updateUser', (req, res) => {
     var idd = new mongodb.ObjectId(req.query.id);
     registrations.updateOne({_id:idd},{
@@ -111,15 +110,53 @@ app.post('/updateUser', (req, res) => {
         State:req.body.State,
         Urn:req.body.Urn,
         Batch:req.body.Batch,
-        Department:req.body.Department
+        Department:req.body.Department,
+        Contact:req.body.Contact
     }
     }).then((succ)=>{
         res.send("succ")
     })
 
 })
+app.post('/updateUserStatus', (req, res) => {
+    var idstat = new mongodb.ObjectId(req.body.idd);
+    registrations.updateOne({_id:idstat},{
+        $set:{
+            Status:req.body.Status
+    }
+    }).then((succ)=>{
+        res.send("succ")
+        // console.log(req.body)
+    })
 
-
+})
+// Delete user
+app.post('/deluser', (req, res) => {
+    // console.log(req.body.id);
+    var iddeluser = new mongodb.ObjectId(req.body.id);
+    registrations.deleteOne({
+        _id: iddeluser
+    }).then((succ) => {
+        res.send('Deleted');
+    })
+})
+// forgetpass
+app.post('/fpass', (req, res) => {
+    registrations.findOne({
+        Email:req.body.Email,
+        Contact:req.body.Contact,
+        Dob:req.body.DOB
+    }).then((succ) => {
+        res.send(succ)
+        // console.log(succ)
+        registrations.updateOne({Email:req.body.Email},{
+            $set:{
+                Password:req.body.npass
+            }}).then((suc)=>{
+                // console.log(suc)
+            })
+    })
+})
 
 // Add delete get category
 app.post('/addcat', (req, res) => {
@@ -199,7 +236,7 @@ app.post('/deldep', (req, res) => {
         res.send('Deleted');
     })
 })
-
+ 
 app.listen(1000, (req, res) => {
     console.log('Server started')
 })

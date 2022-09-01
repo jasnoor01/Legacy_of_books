@@ -28,9 +28,10 @@ export default function UpdateProfile() {
             Dob:data.get('dob'),
             Address:data.get("address"),
             Pincode:data.get("pin"),
+            Contact:data.get("contact"),
             State:data.get("state"),
             Urn:data.get('Urn'),
-            Batch:data.get('Batch'),
+            Batch:data.get('batch'),
             Department:data.get('department')
         }
         // console.log(obj)
@@ -67,16 +68,22 @@ export default function UpdateProfile() {
                     </div>
                     <div className="row mt-2 my-2">
                         <div className="col-md-6 my-2"><label className="labels">University Roll No.</label><input type="number" className="form-control" name="Urn" placeholder="First name" defaultValue={data.Urn}/></div>
-                        <div className="col-md-6 my-2"><label className="labels">Batch</label><input type="month" className="form-control" name="batch" defaultValue={data.batch} required/></div>
+                        <div className="col-md-6 my-2"><label className="labels">Batch</label><input type="month" className="form-control" name="batch" defaultValue={data.Batch} required/></div>
                     </div>
                     <div className="row mt-2 my-2">
                         <div className="col-md-12 my-2"><label className="labels">Department</label>
-                        <select className="form-select py-3 col-lg-12" name="department" aria-label="Default select example">
-                                        <option defaultValue>Select Department</option>
+                        <select className="form-select py-3 col-lg-12" name="department" style={{border:'1px solid #ccc'}} aria-label="Default select example">
+                                        <option defaultValue>{data.Department}</option>
                                         {dep.map((row) => (
                                             <option key={row._id} value={row.Department}>{row.Department}</option>
                                         ))}
                                     </select>
+                        </div>
+                       
+                    </div>
+                    <div className="row mt-2 my-2">
+                        <div className="col-md-12 my-2"><label className="labels">Contact No.</label>
+                        <input type="number" className="form-control" name="contact" placeholder="Contact" defaultValue={data.Contact} required/>
                         </div>
                        
                     </div>
