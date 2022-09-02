@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import {db} from '../Firebase'
+import { db } from '../Firebase'
 
 import AdminSideNav from "./AdminSideNav";
 import Dashboard from './Dashboard';
@@ -12,25 +12,47 @@ export default function AddProduct() {
   function addp(e) {
     e.preventDefault();
     var data = new FormData(e.currentTarget);
-    var obj = {
-      id: localStorage.getItem('AdminLog'),
-      pName: data.get("nproduct"),
-      pDescription: data.get('des'),
-      pPriceType: data.get('pricetype'),
-      pPrice: data.get('price'),
-      pDepartment: data.get('department'),
-      pDepartment: data.get('category'),
-      pDepartment: data.get('subcategory'),
-      // pImage:data.get('image')
-    };
-    var img=data.get('image')
-    var  ref=db.ref()
-    const metadata={
-      contentType:img.type
+
+    var img1 = data.get('image1')
+    var img2 = data.get('image2')
+    var img3 = data.get('image3')
+    var ref = db.ref()
+    const metadata = {
+      contentType: img1.type,
     }
-    ref.child(img.name).put(img,metadata).then(snapshot=>snapshot.ref.getDownloadURL()).then(url=>{
-      console.log(url)
+    const metadata2 = {
+      contentType: img2.type,
+    }
+    const metadata3 = {
+      contentType: img3.type,
+    }
+
+    ref.child(img1.name).put(img1, metadata).then(snapshot => snapshot.ref.getDownloadURL()).then((ur1) => {
+      ref.child(img2.name).put(img2, metadata2).then(snapshot2 => snapshot2.ref.getDownloadURL()).then((ur2) => {
+        ref.child(img3.name).put(img3, metadata3).then(snapshot3 => snapshot3.ref.getDownloadURL()).then((ur3) => {
+
+          var obj = {
+            id: localStorage.getItem('AdminLog'),
+            pName: data.get("nproduct"),
+            pDescription: data.get('des'),
+            pPriceType: data.get('pricetype'),
+            pPrice: data.get('price'),
+            pDepartment: data.get('department'),
+            pCategory: data.get('category'),
+            pSubCategory: data.get('subcategory'),
+            pImage1: ur1,
+            pImage2: ur2,
+            pImage3: ur3
+          };
+          axios.post(url + "addpro", obj).then((succ) => {
+
+          });
+
+        })
+      })
     })
+
+
 
   }
   const [dep, setdep] = useState([]);
@@ -46,7 +68,7 @@ export default function AddProduct() {
     });
     axios.get(url + "getsubcat").then((succ) => {
       setsubcat(succ.data);
-  });
+    });
   }
   useEffect(() => {
     getdata();
@@ -55,7 +77,7 @@ export default function AddProduct() {
     <div >
       <Dashboard />
       <div className="row m-0 p-0">
-        <div style={{ zIndex: '1' }}>
+        <div style={{ zIndex: '2' }}>
           <AdminSideNav />
 
         </div>
@@ -98,52 +120,72 @@ export default function AddProduct() {
                               </select>
                             </div>
                             <div className="row">
-                            <div className="d-flex flex-row align-items-center mb-4 col-lg-6">
-                              <i className="fa-solid fa-building-user"></i>
-                              <select className="form-outline flex-fill mb-0 form-select py-2  col-lg-12" name="category" style={{ border: '0', borderBottom: '1px solid #ccc ' }} aria-label="Default select example">
-                                <option defaultValue>Category</option>
-                                {cat.map((row) => (
-                                  <option key={row._id} value={row.Category}>{row.Category}</option>
-                                ))}
-                              </select>
-                            </div>
-                            <div className="d-flex flex-row align-items-center mb-4 col-lg-6">
-                              <i className="fa-solid fa-building-user"></i>
-                              <select className="form-outline flex-fill mb-0 form-select py-2  col-lg-12" name="subcategory" style={{ border: '0', borderBottom: '1px solid #ccc ' }} aria-label="Default select example">
-                                <option defaultValue>SubCategory</option>
-                                {subcat.map((row) => (
-                                  <option key={row._id} value={row.subCategory}>{row.subCategory}</option>
-                                ))}
-                              </select>
-                            </div>
+                              <div className="d-flex flex-row align-items-center mb-4 col-lg-6">
+                                <i className="fa-solid fa-building-user"></i>
+                                <select className="form-outline flex-fill mb-0 form-select py-2  col-lg-12" name="category" style={{ border: '0', borderBottom: '1px solid #ccc ' }} aria-label="Default select example">
+                                  <option defaultValue>Category</option>
+                                  {cat.map((row) => (
+                                    <option key={row._id} value={row.Category}>{row.Category}</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div className="d-flex flex-row align-items-center mb-4 col-lg-6">
+                                <i className="fa-solid fa-building-user"></i>
+                                <select className="form-outline flex-fill mb-0 form-select py-2  col-lg-12" name="subcategory" style={{ border: '0', borderBottom: '1px solid #ccc ' }} aria-label="Default select example">
+                                  <option defaultValue>SubCategory</option>
+                                  {subcat.map((row) => (
+                                    <option key={row._id} value={row.subCategory}>{row.subCategory}</option>
+                                  ))}
+                                </select>
+                              </div>
 
                             </div>
 
 
                             <div className="frame d-flex flex-row align-items-center mb-4">
-
-                              {/* <div className="center ">
-                              <div className="title">
-                                <h6>  <i className="fa-solid fa-upload"></i> Drop file to upload:</h6>
-                              </div>
-                              <div className="dropzone">
-                                <input type="file" name='image' className="upload-input" accept=".jpeg,.png,.jpg" multiple />
-                              </div>
-                            </div> */}
                               <div className="input-group">
-                                {/* <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                              </div> */}
                                 <div className="custom-file">
-                                  <input type="file" className="custom-file-input upload-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name='image' accept=".jpeg,.png,.jpg" multiple />
+                                  <input type="file" className="custom-file-input upload-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name='image1' accept=".jpeg,.png,.jpg" required />
                                   <label className="custom-file-label" htmlFor="inputGroupFile01">Choose Images</label>
                                 </div>
                               </div>
                             </div>
+                            <div className="frame d-flex flex-row align-items-center mb-4">
+                              <div className="input-group">
+                                <div className="custom-file">
+                                  <input type="file" className="custom-file-input upload-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02" name='image2' accept=".jpeg,.png,.jpg" required />
+                                  <label className="custom-file-label" htmlFor="inputGroupFile02">Choose Images</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="frame d-flex flex-row align-items-center mb-4">
+                              <div className="input-group">
+                                <div className="custom-file">
+                                  <input type="file" className="custom-file-input upload-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" name='image3' accept=".jpeg,.png,.jpg" />
+                                  <label className="custom-file-label" htmlFor="inputGroupFile03">Choose Images</label>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div className="d-flex flex-row align-items-center mb-4">
                               <div className="form-outline flex-fill mb-0">
-                                {/* <i className="fas fa-dollar fa-lg me-3 fa-fw"></i> */}
-                                {/* <i class="fas fa-solid fa-box-heart"></i> */}
 
                                 <label htmlFor="donate"><i className="fa-solid fa-hand-holding-medical"></i> Donate</label>&nbsp;
 

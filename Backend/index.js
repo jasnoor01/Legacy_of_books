@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 // var a = localStorage.getItem('UserLog');
-var registrations, category, subcategory, adminlogin, department;
+var registrations, category, subcategory, adminlogin, department, products;
 
 const connectionString = 'mongodb+srv://admin:admin@cluster0.0lqgicb.mongodb.net/?retryWrites=true&w=majority'
 MongoClient.connect(connectionString, function (err, succ) {
@@ -24,6 +24,7 @@ MongoClient.connect(connectionString, function (err, succ) {
     subcategory = db.collection('Sub Categories')
     adminlogin = db.collection('adminlogin')
     department = db.collection('Add_Department')
+    products = db.collection('Products')
 
     // var              connection name
 
@@ -234,6 +235,18 @@ app.post('/deldep', (req, res) => {
         _id: idd
     }).then((succ) => {
         res.send('Deleted');
+    })
+})
+
+app.post('/addpro', (req, res) => {
+    products.insertOne(req.body).then((succ) => {
+        res.send(succ)
+    }) 
+})
+app.get('/getpro', (req, res) => {
+    products.find().toArray().then((succ) => {
+        res.send(succ);
+        // console.log(succ)
     })
 })
  

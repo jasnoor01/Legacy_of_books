@@ -44,6 +44,7 @@ function App() {
           <Route path='/adminviewusers' element={<AdminViewUsers/>} />
           <Route path='/updateProfile' element={<UpdateProfile/>} />
           <Route path='/resetpass' element={<ResetPass/>} />
+          <Route path='/viewproduct' element={<ProductGrid/>} />
           <Route path='/pgrid' element={<ProductGrid/>} />
 
         </Routes>

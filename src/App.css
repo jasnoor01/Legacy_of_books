@@ -307,6 +307,7 @@ th {
   border: 1px solid #ccc;
   font-family: Roboto, sans-serif;
   text-align: center;
+ 
   position: relative;
   z-index: 1
 }
@@ -315,6 +316,7 @@ th {
   content: "";
   height: 81%;
   width: 100%;
+  /* width: 1000px; */
   background: #fff;
   border: 1px solid rgba(0, 0, 0, .1);
   opacity: 0;
@@ -340,10 +342,11 @@ th {
 
 .product-grid3 .product-image3 img {
   width: 100%;
-  height: auto
+  height: 250px;
 }
 
 .product-grid3 .pic-1 {
+ 
   opacity: 1;
   transition: all .5s ease-out 0s
 }

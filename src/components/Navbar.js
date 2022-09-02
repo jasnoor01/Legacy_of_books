@@ -1,16 +1,17 @@
 
 
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 export default function Navbar() {
 
   const [logcheck,setlogcheck]=useState(localStorage.getItem('UserLog'))
-  
+  var navi = useNavigate();
 
 function Logout() {
   setlogcheck(null) 
   localStorage.removeItem('UserLog')
-  console.log(localStorage.getItem('UserLog')+'abc')
+  // console.log(localStorage.getItem('UserLog')+'abc')
+  navi('/login')
    
 }
   

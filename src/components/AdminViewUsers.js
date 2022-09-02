@@ -105,7 +105,7 @@ export default function AdminViewUsers() {
                                         <td ></td>
                                         <td>{row.Name}</td>
                                         <td>{row.Dob}</td>
-                                        <td>{row.Branch}</td>
+                                        <td>{row.Department}</td>
                                         <td>{row.Batch}</td>
                                         <td>{row.Urn}</td>
                                         <td>{row.Email}</td>
