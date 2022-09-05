@@ -1,7 +1,34 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
+import swal from "sweetalert";
 export default function Dashboard() {
+ 
+  var navi = useNavigate();
+
+function Logout() {
+  swal({
+    title: "Logout?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+})
+    .then((go) => {
+        if (go) {
+          localStorage.removeItem('UserLog')
+          localStorage.removeItem('AdminLog')
+          navi('/login')
+
+            // swal("Department deleted!", {
+            //     icon: "success",
+            // });
+        }
+    });
+ 
+   
+}
   return (
+
     <div style={{marginBottom:'57px'}}>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
         <a className="navbar-brand" href="#">Navbar</a>
@@ -32,6 +59,9 @@ export default function Dashboard() {
               <a className="nav-link disabled" href="#">Disabled</a>
             </li>
           </ul>
+          <ul className='navbar-nav me-auto ml-auto'>
+          <li className="nav-item" ><button className="btn nav-link" onClick={Logout}>Sign out</button></li>
+         </ul>
           
         </div>
       </nav>

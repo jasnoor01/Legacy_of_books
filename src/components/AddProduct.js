@@ -2,14 +2,22 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { db } from '../Firebase'
-
+import swal from "sweetalert";
 import AdminSideNav from "./AdminSideNav";
 import Dashboard from './Dashboard';
 export default function AddProduct() {
   const [donatesell, setdonatesell] = useState('donate')
 
   var url = "http://localhost:1000/";
+  function viewpro(params) {
+
+  }
+
+  const [load, setload] = useState(false)
+
+
   function addp(e) {
+    setload(true)
     e.preventDefault();
     var data = new FormData(e.currentTarget);
 
@@ -45,12 +53,17 @@ export default function AddProduct() {
             pImage3: ur3
           };
           axios.post(url + "addpro", obj).then((succ) => {
-
+            // console.log(succ)
+            if (succ.data !== '') {
+              swal("Product Added Successfully", "", "success")
+              setload(false)
+            }
           });
 
         })
       })
     })
+
 
 
 
@@ -200,10 +213,24 @@ export default function AddProduct() {
 
                               </div>
                             </div>
+                            {load ? (
+                              <div>
 
-                            <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                              <button type="submit" className="btn btn-dark btn-md">Add product</button>
-                            </div >
+                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                  <div className="spinner-border" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                            ) : (
+
+                              <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" className="btn btn-dark btn-md">Add product</button>
+                              </div >
+
+
+                            )}
 
 
                           </form>

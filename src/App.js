@@ -22,6 +22,10 @@ import ProductGrid from './components/ProductGrid';
 import AdminDepartment from './components/AdminDepartment';
 import UpdateProfile from './components/UpdateProfile';
 import ResetPass from './components/ResetPass';
+import ProductDescription from './components/ProductDescription';
+import Cart from './components/Cart';
+import BillingDetails from './components/BillingDetails';
+import CardDetails from './components/CardDetails';
 function App() {
   return (
     <div>
@@ -45,7 +49,10 @@ function App() {
           <Route path='/updateProfile' element={<UpdateProfile/>} />
           <Route path='/resetpass' element={<ResetPass/>} />
           <Route path='/viewproduct' element={<ProductGrid/>} />
-          <Route path='/pgrid' element={<ProductGrid/>} />
+          <Route path='/productdescription' element={<ProductDescription/>} />
+          <Route path='/bill' element={<BillingDetails/>} />
+          <Route path='/cart' element={<Cart/>} />
+          <Route path='/card' element={<CardDetails/>} />
 
         </Routes>
       </Router>
